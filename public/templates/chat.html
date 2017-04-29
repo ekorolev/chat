@@ -1,0 +1,19 @@
+<section id="Chat">
+	<div class="messages">
+		<ul>
+			<li ng-repeat="msg in messages">
+				<div class="message {{msg.type ? msg.type : 'default'}}">
+					<div class="author">
+						<span>{{msg.type=="system" ? "Системное сообщение" : msg.author}}</span>
+					</div>
+					<div class="msg">
+						<span>{{msg.text}}</span>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="input">
+		<input type="text" placeholder="Введите сообщение" ng-model="text" my-enter="send(text); text=''">
+	</div>
+</section>

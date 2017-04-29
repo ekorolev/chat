@@ -26,14 +26,20 @@ gulp.task("clean", function () {
 });
 
 gulp.task("watch", function () {
-	gulp.watch("client/*.html", gulp.series("html", bs.reload));
-	gulp.watch("client/**/*.js", gulp.series("js", bs.reload));
-	gulp.watch("client/**/*.sass", gulp.series("style", bs.reload));
+	gulp.watch("client/**/*.html", gulp.series("html"));
+	gulp.watch("client/**/*.js", gulp.series("js"));
+	gulp.watch("client/**/*.sass", gulp.series("style"));
+
+	gulp.watch("client/**/*.*", function (done) {
+		bs.reload();
+		done();
+	});
 });
 
 gulp.task("browser", function () {
 	bs.init({
 		server: false,
+		ghostMode: false,
 		proxy: {
 			target: "http://localhost:7050",
 			ws: true
